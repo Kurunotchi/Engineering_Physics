@@ -1,30 +1,78 @@
-// Tab Navigation
-document.querySelectorAll('.tab-btn').forEach(btn => {
+// Tab Navigation with keyboard support
+document.querySelectorAll('.tab-btn').forEach((btn, index) => {
     btn.addEventListener('click', () => {
         const tabName = btn.getAttribute('data-tab');
         
-        // Remove active class from all tabs and buttons
+        // Update ARIA
+        document.querySelectorAll('.tab-btn').forEach(b => {
+            b.setAttribute('aria-selected', 'false');
+            b.setAttribute('tabindex', '-1');
+        });
         document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         
-        // Add active class to clicked tab and button
         document.getElementById(tabName).classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+        btn.setAttribute('tabindex', '0');
         btn.classList.add('active');
+        btn.focus();
+    });
+
+    // Keyboard navigation
+    btn.addEventListener('keydown', (e) => {
+        const tabs = document.querySelectorAll('.tab-btn');
+        let currentIndex = Array.from(tabs).indexOf(btn);
+        
+        if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            const nextIndex = (currentIndex + 1) % tabs.length;
+            tabs[nextIndex].click();
+        } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            const prevIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+            tabs[prevIndex].click();
+        } else if (e.key === 'Home') {
+            e.preventDefault();
+            tabs[0].click();
+        } else if (e.key === 'End') {
+            e.preventDefault();
+            tabs[tabs.length - 1].click();
+        }
     });
 });
 
-// Level Navigation in Problems Tab
-document.querySelectorAll('.level-btn').forEach(btn => {
+// Level Navigation in Problems Tab with keyboard support
+document.querySelectorAll('.level-btn').forEach((btn, index) => {
     btn.addEventListener('click', () => {
         const level = btn.getAttribute('data-level');
         
-        // Remove active class from all level content and buttons
+        // Update ARIA
+        document.querySelectorAll('.level-btn').forEach(b => {
+            b.setAttribute('aria-selected', 'false');
+            b.setAttribute('tabindex', '-1');
+        });
         document.querySelectorAll('.level-content').forEach(content => content.classList.remove('active'));
-        document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
         
-        // Add active class
         document.getElementById('level-' + level).classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+        btn.setAttribute('tabindex', '0');
         btn.classList.add('active');
+        btn.focus();
+    });
+
+    // Keyboard navigation
+    btn.addEventListener('keydown', (e) => {
+        const levels = document.querySelectorAll('.level-btn');
+        let currentIndex = Array.from(levels).indexOf(btn);
+        
+        if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            const nextIndex = (currentIndex + 1) % levels.length;
+            levels[nextIndex].click();
+        } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            const prevIndex = (currentIndex - 1 + levels.length) % levels.length;
+            levels[prevIndex].click();
+        }
     });
 });
 
@@ -224,6 +272,25 @@ document.getElementById('dark-toggle').addEventListener('click', () => {
         document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'
     );
 });
+
+// Mobile hamburger menu toggle
+const navToggle = document.getElementById('nav-toggle');
+const tabsNav = document.querySelector('.tabs');
+if (navToggle && tabsNav) {
+    navToggle.addEventListener('click', () => {
+        const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', !isExpanded);
+        tabsNav.classList.toggle('mobile-open');
+    });
+
+    // Close menu when tab clicked (on mobile)
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            navToggle.setAttribute('aria-expanded', 'false');
+            tabsNav.classList.remove('mobile-open');
+        });
+    });
+}
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
