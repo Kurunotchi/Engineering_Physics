@@ -15,14 +15,17 @@
         <p>Interactive learning module with calculators and visualizations</p>
     </header>
 
-    <nav class="tabs">
-        <button class="tab-btn active" data-tab="overview"><i class="fas fa-home"></i> Overview</button>
-        <button class="tab-btn" data-tab="conduction"><i class="fas fa-arrow-right"></i> Conduction</button>
-        <button class="tab-btn" data-tab="convection"><i class="fas fa-wind"></i> Convection</button>
-        <button class="tab-btn" data-tab="radiation"><i class="fas fa-sun"></i> Radiation</button>
-        <button class="tab-btn" data-tab="combined"><i class="fas fa-layer-group"></i> Combined & Apps</button>
-        <button class="tab-btn" data-tab="problems"><i class="fas fa-calculator"></i> Problems</button>
-        <button class="tab-btn" data-tab="summary"><i class="fas fa-clipboard-list"></i> Summary</button>
+    <nav class="tabs" role="tablist" aria-label="Heat Transfer Topics">
+        <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="overview" data-tab="overview" tabindex="0"><i class="fas fa-home"></i> Overview</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="conduction" data-tab="conduction" tabindex="-1"><i class="fas fa-arrow-right"></i> Conduction</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="convection" data-tab="convection" tabindex="-1"><i class="fas fa-wind"></i> Convection</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="radiation" data-tab="radiation" tabindex="-1"><i class="fas fa-sun"></i> Radiation</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="combined" data-tab="combined" tabindex="-1"><i class="fas fa-layer-group"></i> Combined & Apps</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="problems" data-tab="problems" tabindex="-1"><i class="fas fa-calculator"></i> Problems</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="summary" data-tab="summary" tabindex="-1"><i class="fas fa-clipboard-list"></i> Summary</button>
+        <button class="hamburger" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" tabindex="0">
+          <i class="fas fa-bars"></i>
+        </button>
     </nav>
 
     <main>
@@ -324,10 +327,10 @@
         <section id="problems" class="tab-content">
             <h2><i class="fas fa-calculator"></i> Problem Set with Interactive Calculators</h2>
             
-            <div class="level-tabs">
-                <button class="level-btn active" data-level="1">Level 1 🟢 Basic</button>
-                <button class="level-btn" data-level="2">Level 2 🟡 Intermediate</button>
-                <button class="level-btn" data-level="3">Level 3 🔵 Advanced</button>
+            <div class="level-tabs" role="tablist" aria-label="Problem Levels">
+                <button class="level-btn active" role="tab" aria-selected="true" aria-controls="level-1" data-level="1" tabindex="0">Level 1 🟢 Basic</button>
+                <button class="level-btn" role="tab" aria-selected="false" aria-controls="level-2" data-level="2" tabindex="-1">Level 2 🟡 Intermediate</button>
+                <button class="level-btn" role="tab" aria-selected="false" aria-controls="level-3" data-level="3" tabindex="-1">Level 3 🔵 Advanced</button>
             </div>
 
             <!-- Level 1: Basic Problems -->
