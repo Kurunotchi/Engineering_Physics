@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Heat Transfer: Conduction, Convection, Radiation</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-fire"></i> Heat Transfer Modes: Conduction, Convection, Radiation</h1>
+        <p>Interactive learning module with calculators and visualizations</p>
+    </header>
+
+    <nav class="tabs">
+        <button class="tab-btn active" data-tab="overview"><i class="fas fa-home"></i> Overview</button>
+        <button class="tab-btn" data-tab="conduction"><i class="fas fa-arrow-right"></i> Conduction</button>
+        <button class="tab-btn" data-tab="convection"><i class="fas fa-wind"></i> Convection</button>
+        <button class="tab-btn" data-tab="radiation"><i class="fas fa-sun"></i> Radiation</button>
+        <button class="tab-btn" data-tab="combined"><i class="fas fa-layer-group"></i> Combined & Apps</button>
+        <button class="tab-btn" data-tab="problems"><i class="fas fa-calculator"></i> Problems</button>
+        <button class="tab-btn" data-tab="summary"><i class="fas fa-clipboard-list"></i> Summary</button>
+    </nav>
+
+    <main>
+        <!-- Overview Tab -->
+        <section id="overview" class="tab-content active">
+            <h2>1. Core Concept Overview</h2>
+            <p>The module begins by defining <strong>heat</strong> as energy in transit caused by a temperature difference. Heat naturally flows from a region of higher temperature to a region of lower temperature until thermal equilibrium is reached.</p>
+            <p>The three fundamental modes of heat transfer differ in mechanism but often occur simultaneously in real systems.</p>
+            
+            <div class="insight-box">
+                <strong>Important Insight:</strong> In engineering applications, heat transfer is rarely isolated. Most systems involve a <strong>combination</strong> of these modes, forming what is called a <strong>thermal network</strong>.
+            </div>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Mode</th>
+                        <th>Medium Required</th>
+                        <th>Mechanism</th>
+                        <th>Speed</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Conduction</strong></td>
+                        <td>Mostly solids</td>
+                        <td>Molecular vibration & electron transfer</td>
+                        <td>Slow</td>
+                        <td>Metal spoon in hot soup</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Convection</strong></td>
+                        <td>Fluids (liquids/gases)</td>
+                        <td>Bulk fluid motion due to density change</td>
+                        <td>Moderate</td>
+                        <td>Boiling water</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Radiation</strong></td>
+                        <td>None (vacuum allowed)</td>
+                        <td>Electromagnetic waves</td>
+                        <td>Speed of light</td>
+                        <td>Sun heating Earth</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Conduction Tab -->
+        <section id="conduction" class="tab-content">
+            <h2>2a. Conduction – Heat Transfer via Direct Contact</h2>
+            
+            <div class="mode-section">
+                <h3><i class="fas fa-atoms"></i> Microscopic View</h3>
+                <p>In solids, atoms vibrate about fixed positions. When one region is heated, these vibrations increase and transfer energy to neighboring atoms. In metals, <strong>free electrons</strong> act as energy carriers, greatly enhancing heat transfer.</p>
+            </div>
+
+            <div class="mode-section">
+                <h3>Macroscopic Behavior</h3>
+                <p>Heat flows along a temperature gradient, always from hot to cold regions.</p>
+            </div>
+
+            <div class="mode-section">
+                <h3><i class="fas fa-equals"></i> Key Equation (Fourier's Law)</h3>
+                <div class="equation-box">$$q = -k \frac{dT}{dx}$$</div>
+                <p><strong>Where:</strong> q = heat flux (W/m²), k = thermal conductivity, dT/dx = temperature gradient</p>
+            </div>
+
+            <div class="mode-section">
+                <h3><i class="fas fa-layer-group"></i> Thermal Conductivity (k)</h3>
+                <ul>
+                    <li><strong>High k:</strong> copper (400 W/m·K), aluminum (240 W/m·K) → good conductors</li>
+                    <li><strong>Low k:</strong> wood (0.15 W/m·K), rubber (0.2 W/m·K), air (0.026 W/m·K) → good insulators</li>
+                </ul>
+            </div>
+
+            <div class="mode-section">
+                <h3>Thermal Resistance Concept</h3>
+                <p>Conduction can be analyzed like electrical circuits:</p>
+                <div class="equation-box">$$R_{th} = \frac{L}{kA}$$</div>
+                <p>Larger resistance means less heat flow. <strong>Thick walls provide better insulation than thin walls!</strong></p>
+            </div>
+
+            <div class="mode-section">
+                <h3>Steady-State vs Transient Conduction</h3>
+                <ul>
+                    <li><strong>Steady-state:</strong> Temperature does not change with time (constant heat flow)</li>
+                    <li><strong>Transient:</strong> Temperature varies with time (important in heating/cooling processes)</li>
+                </ul>
+            </div>
+
+            <div class="discussion-box">
+                <strong><i class="fas fa-lightbulb"></i> Discussion Question:</strong> Why do thick walls provide better insulation than thin walls?
+                <details>
+                    <summary>Click to reveal answer</summary>
+                    <p>Because increasing thickness increases thermal resistance (R_th = L/(kA)). Greater resistance means reduced heat flow through the wall.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- Convection Tab -->
+        <section id="convection" class="tab-content">
+            <h2>2b. Convection – Heat Transfer via Fluid Motion</h2>
+
+            <div class="mode-section">
+                <h3><i class="fas fa-wind"></i> Physical Mechanism</h3>
+                <p>Convection involves both <strong>conduction within the fluid</strong> and <strong>bulk motion</strong> of the fluid itself. It drives heat transfer in liquids and gases.</p>
+            </div>
+
+            <div class="mode-section">
+                <h3>Boundary Layer Concept</h3>
+                <p>A thin layer of fluid near a surface (boundary layer) controls heat transfer. Its thickness strongly affects the convection coefficient. Thinner boundary layers allow faster heat transfer.</p>
+            </div>
+
+            <div class="mode-section">
+                <h3><i class="fas fa-equals"></i> Key Equation (Newton's Law of Cooling)</h3>
+                <div class="equation-box">$$q = h(T_s - T_\infty)$$</div>
+                <p><strong>Where:</strong> h = convective heat transfer coefficient (W/m²·K), $T_s$ = surface temperature, $T_\infty$ = ambient temperature</p>
+            </div>
+
+            <div class="mode-section">
+                <h3><i class="fas fa-sliders-h"></i> Convective Heat Transfer Coefficient (h)</h3>
+                <ul>
+                    <li><strong>Small h (5-25 W/m²·K):</strong> Natural convection (slow air movement)</li>
+                    <li><strong>Large h (100-10,000+ W/m²·K):</strong> Forced convection (fans, pumps)</li>
+                </ul>
+            </div>
+
+            <div class="mode-section">
+                <h3>Flow Types</h3>
+                <ul>
+                    <li><strong>Laminar flow:</strong> Smooth, orderly motion → lower heat transfer</li>
+                    <li><strong>Turbulent flow:</strong> Chaotic motion → higher heat transfer</li>
+                </ul>
+            </div>
+
+            <div class="discussion-box">
+                <strong><i class="fas fa-lightbulb"></i> Discussion Question:</strong> Why does stirring hot soup cool it faster?
+                <details>
+                    <summary>Click to reveal answer</summary>
+                    <p>Stirring increases convection and disrupts the thermal boundary layer, allowing faster heat transfer from the soup to the surrounding air.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- Radiation Tab -->
+        <section id="radiation" class="tab-content">
+            <h2>2c. Radiation – Heat Transfer via Electromagnetic Waves</h2>
+
+            <div class="mode-section">
+                <h3><i class="fas fa-lightbulb"></i> Fundamental Nature</h3>
+                <p>Radiation is energy transfer through electromagnetic waves, primarily in the <strong>infrared spectrum</strong> for thermal systems. <strong>No medium required</strong> – it travels through vacuum!</p>
+            </div>
+
+            <div class="mode-section">
+                <h3><i class="fas fa-equals"></i> Key Equation (Stefan–Boltzmann Law)</h3>
+                <div class="equation-box">$$q = \varepsilon \sigma (T_s^4 - T_{surr}^4)$$</div>
+                <p><strong>Where:</strong> ε = emissivity (0–1), σ = Stefan–Boltzmann constant (5.67×10⁻⁸ W/m²·K⁴)</p>
+            </div>
+
+            <div class="mode-section">
+                <h3>Emissivity (ε)</h3>
+                <ul>
+                    <li><strong>ε ≈ 1:</strong> Black, matte surfaces (good absorbers and emitters) → paper, fabric, skin</li>
+                    <li><strong>ε ≈ 0:</strong> Shiny, polished metals (poor emitters) → aluminum foil, mirrors</li>
+                </ul>
+            </div>
+
+            <div class="mode-section">
+                <h3>Blackbody Radiation</h3>
+                <p>An ideal surface that absorbs and emits all radiation efficiently. Most real objects are approximated as graybodies.</p>
+            </div>
+
+            <div class="mode-section">
+                <h3><i class="fas fa-fire"></i> Key Insight</h3>
+                <p>Because of the <strong>T⁴ relationship</strong>, radiation becomes <strong>dominant at high temperatures</strong> (e.g., furnaces at 1000 K, stars). Small increases in temperature cause large increases in radiation heat transfer.</p>
+            </div>
+
+            <div class="discussion-box">
+                <strong><i class="fas fa-lightbulb"></i> Discussion Question:</strong> Why do astronauts require special suits in space?
+                <details>
+                    <summary>Click to reveal answer</summary>
+                    <p>No convection exists in space, so radiation is the primary heat transfer mechanism. Special suits with reflective surfaces reduce radiative heat loss and protect against temperature extremes.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- Combined Tab -->
+        <section id="combined" class="tab-content">
+            <h2>3. Combined Heat Transfer & 4. Practical Applications</h2>
+
+            <div class="insight-box">
+                <strong>Series Combination:</strong> Heat passes through multiple layers (e.g., wall → insulation → air)<br>
+                <strong>Parallel Combination:</strong> Heat transfers through different paths simultaneously
+            </div>
+
+            <div class="example-box">
+                <h3><i class="fas fa-mug-hot"></i> Example: Coffee Cup</h3>
+                <ul>
+                    <li><strong>Conduction:</strong> through cup wall</li>
+                    <li><strong>Convection:</strong> air around cup</li>
+                    <li><strong>Radiation:</strong> emitted to surroundings</li>
+                </ul>
+                <p><strong>Engineering Insight:</strong> The slowest mode often <strong>limits overall heat transfer</strong> (like resistance in circuits).</p>
+            </div>
+
+            <h3>Real-World Applications:</h3>
+
+            <div class="cards">
+                <div class="card">
+                    <h4><i class="fas fa-laptop"></i> Electronics Cooling (CPU/Laptop)</h4>
+                    <ul>
+                        <li><strong>Conduction:</strong> chip → heat sink</li>
+                        <li><strong>Convection:</strong> fan airflow</li>
+                        <li><strong>Radiation:</strong> casing</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4><i class="fas fa-home"></i> Thermal Insulation Systems</h4>
+                    <ul>
+                        <li>Fiberglass traps air → reduces convection</li>
+                        <li>Foam reduces conduction</li>
+                        <li>Reflective foil reduces radiation</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4><i class="fas fa-car"></i> Automotive Engines</h4>
+                    <ul>
+                        <li><strong>Conduction:</strong> engine block</li>
+                        <li><strong>Convection:</strong> coolant circulation</li>
+                        <li><strong>Radiation:</strong> exhaust heat</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4><i class="fas fa-person"></i> Human Body Heat Regulation</h4>
+                    <ul>
+                        <li><strong>Conduction:</strong> contact with surfaces</li>
+                        <li><strong>Convection:</strong> air movement around skin</li>
+                        <li><strong>Radiation:</strong> body emitting infrared energy</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4><i class="fas fa-earth-americas"></i> Climate and Environment</h4>
+                    <ul>
+                        <li>Solar radiation heats Earth</li>
+                        <li>Convection drives wind patterns</li>
+                        <li>Conduction affects ground temperature</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Common Misconceptions:</h3>
+            <div class="misconception-box">
+                <details>
+                    <summary><strong>❌ "Heat and temperature are the same."</strong></summary>
+                    <p>✓ <strong>Correct idea:</strong> Temperature measures intensity; heat is energy transfer.</p>
+                </details>
+                <details>
+                    <summary><strong>❌ "Convection happens in solids."</strong></summary>
+                    <p>✓ <strong>Correct idea:</strong> Only fluids (liquids and gases) can convect.</p>
+                </details>
+                <details>
+                    <summary><strong>❌ "Cold flows."</strong></summary>
+                    <p>✓ <strong>Correct idea:</strong> Only heat flows from hot to cold.</p>
+                </details>
+                <details>
+                    <summary><strong>❌ "Radiation requires a medium."</strong></summary>
+                    <p>✓ <strong>Correct idea:</strong> It doesn't; radiation travels through vacuum (like sunlight).</p>
+                </details>
+            </div>
+
+            <h3>Deeper Conceptual Questions:</h3>
+            <div class="question-box">
+                <details>
+                    <summary><strong>1. Why is vacuum the best insulator?</strong></summary>
+                    <p>It eliminates both conduction and convection. Radiation still occurs but can be minimized with reflective surfaces.</p>
+                </details>
+                <details>
+                    <summary><strong>2. Why are desert temperatures extreme?</strong></summary>
+                    <p>Low humidity reduces heat retention; radiation dominates, causing extreme daytime heating and nighttime cooling.</p>
+                </details>
+                <details>
+                    <summary><strong>3. Why do metals feel colder than wood?</strong></summary>
+                    <p>Metals conduct heat away from your hand faster due to high thermal conductivity.</p>
+                </details>
+                <details>
+                    <summary><strong>4. Why does wind chill make air feel colder?</strong></summary>
+                    <p>Wind increases convective heat loss from your body, making you lose heat faster.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- Problems Tab -->
+        <section id="problems" class="tab-content">
+            <h2><i class="fas fa-calculator"></i> Problem Set with Interactive Calculators</h2>
+            
+            <div class="level-tabs">
+                <button class="level-btn active" data-level="1">Level 1 🟢 Basic</button>
+                <button class="level-btn" data-level="2">Level 2 🟡 Intermediate</button>
+                <button class="level-btn" data-level="3">Level 3 🔵 Advanced</button>
+            </div>
+
+            <!-- Level 1: Basic Problems -->
+            <div id="level-1" class="level-content active">
+                <div class="problem">
+                    <h3 class="problem-title">Problem 1: Conduction Heat Flux</h3>
+                    <p>A metal wall conducts heat. Adjust the sliders to find the heat flux using Fourier's Law: <strong>q = k ΔT / L</strong></p>
+                    <div class="slider-group">
+                        <label>Thermal Conductivity (k): <input type="range" id="p1-k" min="0.1" max="400" step="1" value="50"> <span id="p1-k-val">50</span> W/m·K</label>
+                        <label>Temperature Difference (ΔT): <input type="range" id="p1-dT" min="1" max="100" step="1" value="40"> <span id="p1-dT-val">40</span> K</label>
+                        <label>Wall Thickness (L): <input type="range" id="p1-L" min="0.01" max="1" step="0.01" value="0.1"> <span id="p1-L-val">0.1</span> m</label>
+                        <label>Area (A): <input type="number" id="p1-A" value="1" step="0.1"> m²</label>
+                    </div>
+                    <button onclick="calculateP1()"><i class="fas fa-calculator"></i> Calculate Heat Flux</button>
+                    <div id="p1-result" class="result-box"></div>
+                    <button class="solution-btn" onclick="toggleSolution('p1-sol')"><i class="fas fa-lightbulb"></i> Show Solution</button>
+                    <div id="p1-sol" class="solution hidden">
+                        <p><strong>Solution:</strong> q = k·ΔT/L = 50 × 40 / 0.1 = 20,000 W/m²</p>
+                    </div>
+                </div>
+
+                <div class="problem">
+                    <h3 class="problem-title">Problem 2: Convection Heat Transfer</h3>
+                    <p>A surface loses heat by convection. Use Newton's Law: <strong>q = h (T_s - T_∞)</strong></p>
+                    <div class="slider-group">
+                        <label>Convection Coefficient (h): <input type="range" id="p2-h" min="5" max="1000" step="5" value="100"> <span id="p2-h-val">100</span> W/m²·K</label>
+                        <label>Surface Temperature (T_s): <input type="range" id="p2-Ts" min="30" max="200" step="1" value="100"> <span id="p2-Ts-val">100</span> °C</label>
+                        <label>Ambient Temperature (T_∞): <input type="range" id="p2-Tinf" min="0" max="50" step="1" value="25"> <span id="p2-Tinf-val">25</span> °C</label>
+                        <label>Area (A): <input type="number" id="p2-A" value="1" step="0.1"> m²</label>
+                    </div>
+                    <button onclick="calculateP2()"><i class="fas fa-calculator"></i> Calculate Heat Transfer</button>
+                    <div id="p2-result" class="result-box"></div>
+                    <button class="solution-btn" onclick="toggleSolution('p2-sol')"><i class="fas fa-lightbulb"></i> Show Solution</button>
+                    <div id="p2-sol" class="solution hidden">
+                        <p><strong>Solution:</strong> q = h × (T_s - T_∞) × A = 100 × (100-25) × 1 = 7,500 W</p>
+                    </div>
+                </div>
+
+                <div class="problem">
+                    <h3 class="problem-title">Problem 3: Radiation Heat Transfer</h3>
+                    <p>A hot object radiates heat. Use Stefan–Boltzmann Law: <strong>q = ε σ (T_s⁴ - T_surr⁴)</strong></p>
+                    <div class="slider-group">
+                        <label>Emissivity (ε): <input type="range" id="p3-eps" min="0" max="1" step="0.05" value="0.9"> <span id="p3-eps-val">0.9</span></label>
+                        <label>Surface Temperature (T_s): <input type="range" id="p3-Ts" min="300" max="1500" step="10" value="500"> <span id="p3-Ts-val">500</span> K</label>
+                        <label>Surroundings Temperature (T_surr): <input type="range" id="p3-Tsurr" min="200" max="400" step="10" value="300"> <span id="p3-Tsurr-val">300</span> K</label>
+                        <label>Area (A): <input type="number" id="p3-A" value="1" step="0.1"> m²</label>
+                    </div>
+                    <button onclick="calculateP3()"><i class="fas fa-calculator"></i> Calculate Radiation Heat</button>
+                    <div id="p3-result" class="result-box"></div>
+                    <button class="solution-btn" onclick="toggleSolution('p3-sol')"><i class="fas fa-lightbulb"></i> Show Solution</button>
+                    <div id="p3-sol" class="solution hidden">
+                        <p><strong>Solution:</strong> σ = 5.67×10⁻⁸ W/m²·K⁴. q = ε σ A (T_s⁴ - T_surr⁴)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Level 2: Intermediate Problems -->
+            <div id="level-2" class="level-content">
+                <div class="problem">
+                    <h3 class="problem-title">Problem 4: Thermal Resistance (Series)</h3>
+                    <p>Calculate total thermal resistance for layers in series: <strong>R_total = L₁/(k₁A) + L₂/(k₂A)</strong></p>
+                    <div class="slider-group">
+                        <label>Layer 1 - k₁: <input type="range" id="p4-k1" min="0.1" max="100" step="0.5" value="50"> <span id="p4-k1-val">50</span> W/m·K</label>
+                        <label>Layer 1 - L₁: <input type="range" id="p4-L1" min="0.01" max="0.5" step="0.01" value="0.1"> <span id="p4-L1-val">0.1</span> m</label>
+                        <label>Layer 2 - k₂: <input type="range" id="p4-k2" min="0.01" max="10" step="0.1" value="0.5"> <span id="p4-k2-val">0.5</span> W/m·K</label>
+                        <label>Layer 2 - L₂: <input type="range" id="p4-L2" min="0.01" max="0.5" step="0.01" value="0.05"> <span id="p4-L2-val">0.05</span> m</label>
+                        <label>Area (A): <input type="number" id="p4-A" value="2" step="0.1"> m²</label>
+                    </div>
+                    <button onclick="calculateP4()"><i class="fas fa-calculator"></i> Calculate Total Resistance</button>
+                    <div id="p4-result" class="result-box"></div>
+                </div>
+
+                <div class="problem">
+                    <h3 class="problem-title">Problem 5: Combined Conduction & Convection</h3>
+                    <p>Heat flows through wall (conduction) and then to ambient (convection). Find heat flux.</p>
+                    <div class="slider-group">
+                        <label>Wall k: <input type="range" id="p5-k" min="1" max="100" step="1" value="25"> <span id="p5-k-val">25</span> W/m·K</label>
+                        <label>Wall L: <input type="range" id="p5-L" min="0.01" max="0.5" step="0.01" value="0.2"> <span id="p5-L-val">0.2</span> m</label>
+                        <label>Convection h: <input type="range" id="p5-h" min="5" max="500" step="5" value="50"> <span id="p5-h-val">50</span> W/m²·K</label>
+                        <label>T_internal: <input type="range" id="p5-T1" min="30" max="100" step="1" value="80"> <span id="p5-T1-val">80</span> °C</label>
+                        <label>T_ambient: <input type="range" id="p5-T2" min="0" max="30" step="1" value="20"> <span id="p5-T2-val">20</span> °C</label>
+                    </div>
+                    <button onclick="calculateP5()"><i class="fas fa-calculator"></i> Calculate Combined Heat Transfer</button>
+                    <div id="p5-result" class="result-box"></div>
+                </div>
+            </div>
+
+            <!-- Level 3: Advanced Problems -->
+            <div id="level-3" class="level-content">
+                <div class="problem">
+                    <h3 class="problem-title">Problem 6: Multi-Layer System Analysis</h3>
+                    <p>Complex thermal circuit with 3 layers (insulation system)</p>
+                    <div class="result-box">
+                        <p><strong>Advanced Problem:</strong> Understand series thermal resistance networks.</p>
+                    </div>
+                    <button onclick="calculateP6()"><i class="fas fa-calculator"></i> Solve System</button>
+                    <div id="p6-result" class="result-box"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary Tab -->
+        <section id="summary" class="tab-content">
+            <h2>Summary & Key Takeaways</h2>
+
+            <div class="summary-box">
+                <h3><i class="fas fa-arrow-right"></i> Conduction</h3>
+                <p>Energy transfer via <strong>direct molecular interaction</strong> in solids. Governed by Fourier's Law: <strong>q = -k(dT/dx)</strong></p>
+            </div>
+
+            <div class="summary-box">
+                <h3><i class="fas fa-wind"></i> Convection</h3>
+                <p>Energy transfer via <strong>fluid motion</strong> in liquids and gases. Governed by Newton's Law of Cooling: <strong>q = h(T_s - T_∞)</strong></p>
+            </div>
+
+            <div class="summary-box">
+                <h3><i class="fas fa-sun"></i> Radiation</h3>
+                <p>Energy transfer via <strong>electromagnetic waves</strong> with no medium required. Governed by Stefan–Boltzmann Law: <strong>q = ε σ(T_s⁴ - T_surr⁴)</strong></p>
+            </div>
+
+            <div class="final-insight">
+                <h3><i class="fas fa-lightbulb"></i> Final Engineering Insight</h3>
+                <p>All real thermal systems involve a <strong>combination</strong> of these three modes. Effective engineering design focuses on:</p>
+                <ul>
+                    <li><strong>Identifying the dominant mode</strong> in your system</li>
+                    <li><strong>Controlling material properties</strong> (k, ε, h)</li>
+                    <li><strong>Optimizing environmental conditions</strong> (fluid flow, temperature gradients)</li>
+                    <li><strong>Understanding trade-offs</strong> between modes and design constraints</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Interactive Heat Transfer Learning Module | Physics 2</p>
+        <button id="dark-toggle"><i class="fas fa-moon"></i> Dark Mode</button>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
